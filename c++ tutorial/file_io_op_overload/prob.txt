@@ -1,0 +1,2 @@
+Begining of the file | WordCount: 4| Avg. Word Length: 4.25
+operator is really nice | WordCount: 4| Avg. Word Length: 5
