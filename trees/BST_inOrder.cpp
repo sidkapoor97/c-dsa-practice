@@ -72,12 +72,12 @@ public:
         print2D(r->left,space);
     }
 
-    void printPreOrder(TreeNode* r){
+    void printInOrder(TreeNode* r){
         if(r==NULL)
             return;
+        printInOrder(r->left);
         std::cout<<r->value<<" | ";
-        printPreOrder(r->left);
-        printPreOrder(r->right);
+        printInOrder(r->right);
     }
 };
 
@@ -117,8 +117,8 @@ int main()
         case 4:
             std::cout<<"PRINT 2D\n";
             obj.print2D(obj.root,5);
-            std::cout<<"\nPRE-ORDER TRAVERSAL\n";
-            obj.printPreOrder(obj.root);
+            std::cout<<"\nIN-ORDER TRAVERSAL\n";
+            obj.printInOrder(obj.root);
             std::cout<<"\n";
             break;
         case 5:
