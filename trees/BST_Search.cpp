@@ -24,16 +24,12 @@ public:
     BST(){
         root=NULL;
     }
-
-    //IS EMPTY
     bool isEmpty(){
         if(root==NULL)
             return true;
         else
             return false;
     }
-
-    // INSERT NODE
     void InsertNode(TreeNode* newNode){
         if(root==NULL){
             root=newNode;
@@ -63,29 +59,36 @@ public:
             }
             
         }
-    }
+    };
 
-    // PRINT 2D
+    TreeNode* IterativeSearch(int val){
+        if(root==NULL)
+            return NULL;
+        else if(root->value == val)
+            return root;
+        else{
+            TreeNode* temp=root;
+            while(temp!=NULL){
+                if(temp->value == val)
+                    return temp;
+                else if(val<temp->value)
+                    temp=temp->left;
+                else
+                    temp=temp->right;
+            }
+            return NULL;
+        }
+    }
     void print2D(TreeNode* r,int space){
-        if(r==NULL)
+        if(root==NULL)
             return;
         space+=SPACE;
         print2D(r->right,space);
-        std::cout<<"\n";
         for(int i=SPACE;i<space;i++)
             std::cout<<" ";
         std::cout<<r->value<<"\n";
         print2D(r->left,space);
-    }
-
-    // IN-ORDER TRAVERSAL
-    void printInOrder(TreeNode* r){
-        if(r==NULL)
-            return;
-        printInOrder(r->left);
-        std::cout<<r->value<<" | ";
-        printInOrder(r->right);
-    }
+    };
 };
 
 int main()
@@ -93,6 +96,7 @@ int main()
     int value;
     int option;
     BST obj;
+    TreeNode* searchResult;
     do
     {
         std::cout<<"Enter 0 to exit\n";
@@ -117,16 +121,20 @@ int main()
             break;
         case 2:
             std::cout<<"SEARCH NODE!!\n";
+            std::cout<<"Enter value to be searched:\n";
+            std::cin>>value;
+            searchResult = obj.IterativeSearch(value);
+            if(searchResult == NULL)
+                std::cout<<"Value not found or EMPTY TREE\n";
+            else
+                std::cout<<"Value: "<<searchResult->value<<" FOUND\n";
             break;
         case 3:
             std::cout<<"DELETE NODE\n";
             break;
         case 4:
-            std::cout<<"PRINT 2D\n";
+            std::cout<<"PRINT AND TRAVERSE \n";
             obj.print2D(obj.root,5);
-            std::cout<<"\nIN-ORDER TRAVERSAL\n";
-            obj.printInOrder(obj.root);
-            std::cout<<"\n";
             break;
         case 5:
             system("cls");
